@@ -45,14 +45,14 @@ const getCafes = async () => {
 // Функция для выбора случайного кафе
 const getRandomCafe = async () => {
   const url = 'https://bandaumnikov.ru/api/test/site/get-view';
-  cafes.value = [];
   
   try {
+    cafes.value = [];
     const randomIndex = Math.floor(Math.random() * length.value);
     const response = await axios.get(`${url}?id=${randomIndex}`);
     const data = response.data.data;
     
-    if (!data.address) getRandomCafe();
+    if (!data.address) return getRandomCafe()
     
     cafes.value.push(data);
     return data;
